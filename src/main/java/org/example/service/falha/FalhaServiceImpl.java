@@ -1,7 +1,9 @@
 package org.example.service.falha;
 
 import org.example.Repository.EquipamentoRepository;
+import org.example.Repository.EquipamentoRepositoryImpl;
 import org.example.Repository.FalhaRepository;
+import org.example.Repository.FalhaRepositoryImpl;
 import org.example.model.Equipamento;
 import org.example.model.Falha;
 
@@ -17,6 +19,10 @@ public class FalhaServiceImpl implements FalhaService{
         this.falhaRepository = falhaRepository;
         this.equipamentoRepository = equipamentoRepository;
     }
+    public FalhaServiceImpl() {
+        this.falhaRepository = new FalhaRepositoryImpl();
+        this.equipamentoRepository = new EquipamentoRepositoryImpl();
+    }
 
 
     @Override
@@ -29,12 +35,11 @@ public class FalhaServiceImpl implements FalhaService{
 
         if ("CRITICA".equals(falha.getCriticidade())){
             equipamento.setStatusOperacional("EM_MANUTENCAO");
-            equipamentoRepository.updateStatus(equipamento);
+            equipamentoRepository.update(equipamento);
 
         }
 
-        return falhaRepository.registrarNovaFalha(falha);
-
+        return falhaRepository.save(falha);
     }
 
     @Override

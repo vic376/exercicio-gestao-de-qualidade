@@ -2,14 +2,14 @@ package org.example.Repository;
 
 import org.example.model.Falha;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class FalhaRepository {
-    public Falha registrarNovaFalha;
+public abstract class FalhaRepository {
 
-    public Falha registrarNovaFalha(Falha falha) {
-    }
 
-    public List<Falha> buscarFalhasCriticasAbertas() {
-    }
+    public abstract List<Falha> buscarFalhasCriticasAbertas() throws SQLException;
+
+
+    public abstract Falha save(Falha falha) throws SQLException;
 }

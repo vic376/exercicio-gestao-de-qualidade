@@ -1,6 +1,7 @@
 package org.example.service.equipamento;
 
 import org.example.Repository.EquipamentoRepository;
+import org.example.Repository.EquipamentoRepositoryImpl;
 import org.example.model.Equipamento;
 
 import java.sql.SQLException;
@@ -12,6 +13,10 @@ public class EquipamentoServiceImpl implements EquipamentoService{
 
     public EquipamentoServiceImpl(EquipamentoRepository equipamentoRepository) {
         this.equipamentoRepository = equipamentoRepository;
+    }
+
+    public EquipamentoServiceImpl() {
+        this.equipamentoRepository = new EquipamentoRepositoryImpl();
     }
 
 
