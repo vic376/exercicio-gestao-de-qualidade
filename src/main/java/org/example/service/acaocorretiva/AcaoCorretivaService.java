@@ -7,3 +7,7 @@ import java.sql.SQLException;
 public interface AcaoCorretivaService{
     AcaoCorretiva registrarConclusaoDeAcao(AcaoCorretiva acao) throws SQLException;
 }
+
+    //AcaoCorretiva buscarFalhaPorId(AcaoCorretiva acao) throws SQLException;
+
+

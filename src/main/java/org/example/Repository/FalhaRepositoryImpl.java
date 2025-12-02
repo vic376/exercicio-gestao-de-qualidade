@@ -68,4 +68,30 @@ public class FalhaRepositoryImpl extends FalhaRepository {
 
         return falhas;
     }
+
+    @Override
+    public void update(Falha falha) throws SQLException {
+        String sql = """
+        UPDATE Falha 
+        SET status = ?,
+            criticidade = ?,
+            descricao = ?,
+            dataHoraOcorrencia = ?,
+            tempoParadaHoras = ?
+        WHERE id = ?
+        """;
+
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, falha.getStatus());
+            stmt.setString(2, falha.getCriticidade());
+            stmt.setString(3, falha.getDescricao());
+            stmt.setTimestamp(4, Timestamp.valueOf(falha.getDataHoraOcorrencia()));
+            stmt.setBigDecimal(5, falha.getTempoParadaHoras());
+            stmt.setLong(6, falha.getId());
+
+            stmt.executeUpdate();
+        }
+    }
 }
